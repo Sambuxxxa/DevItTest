@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Image, Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {observer} from "mobx-react-lite";
 import {Theme} from "../../config/Theme";
 import UserStore from "../../store/UserStore";
@@ -59,7 +59,7 @@ const Header = ({avatar, setAvatar}) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.row}>
         <Text style={styles.title}>Edit Profile</Text>
         <Text onPress={() => AuthStore.logOut()} style={styles.logOut}>Log Out</Text>
@@ -93,6 +93,9 @@ const Header = ({avatar, setAvatar}) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: Platform.OS === "ios" ? 0 : 50
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
